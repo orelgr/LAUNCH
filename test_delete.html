@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test DELETE Endpoints</title>
+</head>
+<body>
+    <h1>Test DELETE Functionality</h1>
+    <button onclick="testDeleteRegistration()">Test Delete Registration</button>
+    <button onclick="testDeleteDonation()">Test Delete Donation</button>
+    <div id="results"></div>
+    
+    <script>
+        async function testDeleteRegistration() {
+            try {
+                console.log('Testing DELETE registration...');
+                
+                const response = await fetch('/api/admin/registration/11', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.text();
+                document.getElementById('results').innerHTML = `
+                    <h3>Registration DELETE Result:</h3>
+                    <p>Status: ${response.status}</p>
+                    <p>Response: ${result}</p>
+                `;
+                
+            } catch (error) {
+                document.getElementById('results').innerHTML = `
+                    <h3>Registration DELETE Error:</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+        
+        async function testDeleteDonation() {
+            try {
+                console.log('Testing DELETE donation...');
+                
+                const response = await fetch('/api/admin/donation/11', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const result = await response.text();
+                document.getElementById('results').innerHTML = `
+                    <h3>Donation DELETE Result:</h3>
+                    <p>Status: ${response.status}</p>
+                    <p>Response: ${result}</p>
+                `;
+                
+            } catch (error) {
+                document.getElementById('results').innerHTML = `
+                    <h3>Donation DELETE Error:</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

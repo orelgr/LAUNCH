@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תודה על ההרשמה - GmarUp</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheets for consistency -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    
+    <style>
+        /* Thank You Page - Professional Design */
+        body {
+            font-family: var(--font-hebrew);
+            background: var(--gray-50);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Clean background */
+        .page-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
+            z-index: -1;
+        }
+        
+        /* Subtle pattern overlay */
+        .page-background::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle at 1px 1px, rgba(37, 99, 235, 0.03) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+        
+        /* Main Container */
+        .thank-you-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-2xl);
+            position: relative;
+        }
+        
+        .thank-you-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            padding: var(--space-4xl) var(--space-3xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            max-width: 700px;
+            width: 100%;
+            position: relative;
+        }
+        
+        /* Success Icon - Clean and Professional */
+        .success-icon-container {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-bottom: var(--space-2xl);
+            position: relative;
+        }
+        
+        .success-icon {
+            width: 40px;
+            height: 40px;
+            stroke: var(--white);
+            stroke-width: 3;
+            fill: none;
+        }
+        
+        /* Replace emoji with SVG checkmark */
+        .success-icon-svg {
+            width: 40px;
+            height: 40px;
+        }
+        
+        /* Typography - Professional */
+        .thank-you-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+        }
+        
+        .thank-you-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: var(--space-3xl);
+            font-weight: 400;
+        }
+        
+        .thank-you-message {
+            background: var(--gray-50);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            margin-bottom: var(--space-3xl);
+            position: relative;
+        }
+        
+        .message-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--gray-700);
+            margin: 0;
+        }
+        
+        .highlight-text {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Steps Section - Clean */
+        .next-steps {
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .steps-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-2xl);
+            text-align: center;
+        }
+        
+        .steps-list {
+            text-align: right;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .step-item {
+            padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            border-right: 4px solid var(--primary);
+            transition: all 0.2s ease;
+        }
+        
+        .step-item:hover {
+            box-shadow: var(--shadow-md);
+            border-right-color: var(--primary-hover);
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-left: var(--space-sm);
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+        
+        .step-text {
+            flex: 1;
+        }
+        
+        .step-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .step-description {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        /* Action Buttons - Professional */
+        .action-section {
+            margin-bottom: var(--space-3xl);
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            padding: var(--space-lg);
+            border: 2px solid transparent;
+            border-radius: var(--radius-lg);
+            font-family: var(--font-hebrew);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-sm);
+            min-height: 54px;
+            position: relative;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-outline {
+            background: var(--white);
+            color: var(--gray-700);
+            border-color: var(--gray-300);
+        }
+        
+        .btn-outline:hover {
+            background: var(--gray-50);
+            border-color: var(--gray-400);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        /* Contact Section - Clean */
+        .contact-section {
+            background: var(--gray-50);
+            padding: var(--space-2xl);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            text-align: center;
+        }
+        
+        .contact-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--gray-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .contact-item:hover {
+            color: var(--primary);
+        }
+        
+        .memorial-text {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            margin-top: var(--space-lg);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--gray-300);
+            font-style: italic;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .thank-you-container {
+                padding: var(--space-lg);
+            }
+            
+            .thank-you-card {
+                padding: var(--space-2xl);
+            }
+            
+            .thank-you-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: var(--space-md);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .thank-you-container {
+                padding: var(--space-md);
+            }
+            
+            .thank-you-card {
+                padding: var(--space-xl);
+            }
+            
+            .thank-you-title {
+                font-size: 1.75rem;
+            }
+            
+            .success-icon-container {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .success-icon-svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Clean Background -->
+    <div class="page-background"></div>
+    
+    <!-- Main Content -->
+    <div class="thank-you-container">
+        <div class="thank-you-card">
+            <!-- Success Icon -->
+            <div class="success-icon-container">
+                <svg class="success-icon" viewBox="0 0 24 24">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                </svg>
+            </div>
+            
+            <!-- Main Content -->
+            <h1 class="thank-you-title">תודה רבה על ההרשמה!</h1>
+            <p class="thank-you-subtitle">הצטרפת בהצלחה לרשימת ההמתנה של GmarUp</p>
+            
+            <div class="thank-you-message">
+                <p class="message-text">
+                    <span class="highlight-text">ההרשמה שלך התקבלה בהצלחה.</span><br>
+                    אתה עכשיו חלק מקהילת המחכים לכלי החדשני ללימוד גמרא עם בינה מלאכותית.<br>
+                    לעילוי נשמת רס״ל אור מנצור הי״ד
+                </p>
+            </div>
+            
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3 class="steps-title">מה קורה בהמשך?</h3>
+                
+                <div class="steps-list">
+                    <div class="step-item">
+                        <div class="step-content">
+                            <div class="step-text">
+                                <div class="step-title">פיתוח מתקדם</div>
+                                <div class="step-description">הצוות עובד על השלמת הכלי ללימוד גמרא עם בינה מלאכותית</div>
+                            </div>
+                            <div class="step-number">1</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-content">
+                            <div class="step-text">
+                                <div class="step-title">עדכונים מיידיים</div>
+                                <div class="step-description">תקבל עדכונים באימייל על התקדמות הפיתוח ותאריכי השקה</div>
+                            </div>
+                            <div class="step-number">2</div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <div class="step-content">
+                            <div class="step-text">
+                                <div class="step-title">גישה מוקדמת</div>
+                                <div class="step-description">תהיה בין הראשונים לקבל גישה חינמית לכלי</div>
+                            </div>
+                            <div class="step-number">3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="action-section">
+                <div class="action-buttons">
+                    <button onclick="openWhatsApp()" class="btn btn-primary">
+                        הצטרף לקבוצת וואטסאפ
+                    </button>
+                    
+                    <button onclick="donate(180)" class="btn btn-secondary">
+                        תרום לזכר אור מנצור
+                    </button>
+                    
+                    <a href="index.html" class="btn btn-outline">
+                        חזור לדף הראשי
+                    </a>
+                    
+                    <button onclick="shareWithFriends()" class="btn btn-outline">
+                        שתף עם חברים
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h4 class="contact-title">צור קשר</h4>
+                <div class="contact-info">
+                    <a href="mailto:info@gmarup.co.il" class="contact-item">
+                        <span>info@gmarup.co.il</span>
+                    </a>
+                    <a href="tel:0502277660" class="contact-item">
+                        <span>050-227-7660</span>
+                    </a>
+                </div>
+                <p class="memorial-text">
+                    לעילוי נשמת רס״ל אור מנצור הי״ד - ברוך הבא למשפחת GmarUp
+                </p>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+        // Clean, professional JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track page view
+            trackThankYouPageView();
+        });
+        
+        // Analytics tracking
+        function trackThankYouPageView() {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_view', {
+                    page_title: 'Thank You Page',
+                    page_location: window.location.href
+                });
+            }
+        }
+        
+        // WhatsApp functionality
+        function openWhatsApp() {
+            const message = encodeURIComponent('היי! הצטרפתי לרשימת ההמתנה של GmarUp - הכלי ללימוד גמרא עם בינה מלאכותית לעילוי נשמת אור מנצור הי״ד');
+            const whatsappUrl = `https://wa.me/972502277660?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+        
+        // Donation functionality
+        function donate(amount = 180) {
+            const description = encodeURIComponent(`תרומה לזכר רס״ל אור מנצור הי״ד - GmarUp`);
+            const paymentUrl = `https://www.bitpay.co.il/app/me/14D6AE95-19DD-340D-BE3D-1EB146D9A0B420D2?amount=${amount}`;
+            window.open(paymentUrl, '_blank');
+        }
+        
+        // Share functionality
+        function shareWithFriends() {
+            const shareText = 'הצטרפתי לרשימת ההמתנה של GmarUp - הכלי ללימוד גמרא עם בינה מלאכותית לעילוי נשמת רס״ל אור מנצור הי״ד';
+            const shareUrl = window.location.origin;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'GmarUp - כלי AI ללימוד גמרא',
+                    text: shareText,
+                    url: shareUrl
+                }).catch(() => {
+                    fallbackShare(shareText, shareUrl);
+                });
+            } else {
+                fallbackShare(shareText, shareUrl);
+            }
+        }
+        
+        function fallbackShare(text, url) {
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text + '\n\n' + url)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+    
+    <!-- Dynamic Settings Loader -->
+    <script src="js/dynamic-settings.js"></script>
+</body>
+</html>
