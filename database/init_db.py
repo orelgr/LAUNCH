@@ -147,7 +147,7 @@ def init_database():
         default_settings = [
             ('whatsapp_link', 'https://chat.whatsapp.com/LNmVCXvv35S9SsbWTol2qW'),
             ('bit_phone', '0502277660'),
-            ('admin_email', 'info@gmarup.co.il'),
+            ('admin_email', 'gmarupil@gmail.com'),
             ('site_title', 'גמראפ - לימוד גמרא לכל אחד'),
             ('memorial_counter_start', '2500'),
             ('donations_counter_start', '120000'),

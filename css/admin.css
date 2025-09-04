@@ -875,29 +875,6 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Reset Button */
-.btn-reset {
-    background: var(--orange-50);
-    border: 1px solid var(--orange-200);
-    color: var(--orange-700);
-    font-size: 0.75rem;
-    padding: 0.375rem 0.75rem;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    width: 100%;
-}
-
-.btn-reset:hover {
-    background: var(--orange-100);
-    border-color: var(--orange-300);
-    color: var(--orange-800);
-}
-
-.btn-reset:active {
-    transform: translateY(1px);
-    box-shadow: none;
-}
 
 /* Empty States */
 .empty-state {

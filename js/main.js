@@ -821,7 +821,7 @@ function showPrivacy() {
                     <h4>אבטחת מידע</h4>
                     <p>הנתונים נשמרים בשרתים מאובטחים בישראל ולא מועברים לצד שלישי ללא הסכמתך.</p>
                     <h4>זכויותיך</h4>
-                    <p>תוכל לבקש מחיקת הנתונים בכל עת על ידי פנייה למייל: info@gmarup.co.il</p>
+                    <p>תוכל לבקש מחיקת הנתונים בכל עת על ידי פנייה למייל: gmarupil@gmail.com</p>
                 </div>
                 <div class="modal-footer">
                     <button onclick="closePrivacy()" class="btn-primary">הבנתי</button>

@@ -133,11 +133,12 @@ def init_database():
             )
         ''')
         
+        
         # הכנסת הגדרות ברירת מחדל
         default_settings = [
             ('whatsapp_link', 'https://chat.whatsapp.com/LNmVCXvv35S9SsbWTol2qW'),
             ('bit_phone', '0502277660'),
-            ('admin_email', 'info@gmarup.co.il'),
+            ('admin_email', 'gmarupil@gmail.com'),
             ('site_title', 'גמראפ - לימוד גמרא לכל אחד'),
             ('memorial_counter_start', '2500'),
             ('admin_password', '0544227754')
@@ -441,7 +442,7 @@ def get_public_settings():
         defaults = {
             'whatsapp_link': 'https://chat.whatsapp.com/LNmVCXvv35S9SsbWTol2qW',
             'bit_phone': '0502277660',
-            'admin_email': 'info@gmarup.co.il',
+            'admin_email': 'gmarupil@gmail.com',
             'site_title': 'גמראפ - לימוד גמרא לכל אחד',
             'memorial_counter_start': '2500'
         }
@@ -605,6 +606,10 @@ def update_donation():
         logger.error(traceback.format_exc())
         return jsonify({'success': False, 'error': 'שגיאה בעדכון התרומה'}), 500
 
+
+
+
+
 # פונקציית בדיקה לחיבור
 @app.route('/api/test', methods=['GET'])
 def test_connection():
@@ -634,6 +639,52 @@ def test_connection():
             'error': 'בעיה בחיבור למסד הנתונים',
             'details': str(e)
         }), 500
+
+# API למעקב ביקורים דרך analytics
+@app.route('/api/admin/actions', methods=['POST'])
+def admin_actions():
+    try:
+        # Check if it's form data or JSON
+        if request.content_type == 'application/x-www-form-urlencoded':
+            data = request.form
+        else:
+            data = request.get_json() or {}
+        
+        action = data.get('action', '')
+        
+        if action == 'track_analytics':
+            # Track analytics event
+            conn = create_connection()
+            cursor = conn.cursor()
+            
+            now = datetime.now().isoformat()
+            cursor.execute('''
+                INSERT INTO analytics 
+                (session_id, category, action, label, value, url, ip_address, created_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                data.get('sessionId', ''),
+                data.get('category', 'Page'),
+                data.get('eventAction', data.get('action', 'visit')),
+                data.get('label', ''),
+                data.get('value', 1),
+                data.get('url', '/'),
+                request.remote_addr,
+                now
+            ))
+            
+            conn.commit()
+            conn.close()
+            
+            return jsonify({'success': True, 'message': 'Analytics tracked'})
+        
+        else:
+            return jsonify({'success': False, 'error': 'פעולה לא מוכרת'}), 400
+            
+    except Exception as e:
+        logger.error(f"❌ שגיאה בפעולות אדמין: {e}")
+        logger.error(traceback.format_exc())
+        return jsonify({'success': False, 'error': 'שגיאה בביצוע הפעולה'}), 500
 
 def main():
     print("Starting GmarUp Robust Server...")

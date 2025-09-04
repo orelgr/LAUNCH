@@ -338,27 +338,6 @@ function updateDashboardStats() {
     document.getElementById('total-donations-amount').textContent = `₪${totalDonationAmount.toLocaleString('he-IL')}`;
     document.getElementById('total-donations-count').textContent = totalDonationsCount.toLocaleString('he-IL');
     
-    // Update analytics (simulated visitors)
-    const todayVisitors = currentData.analytics.filter(a => {
-        const eventDate = new Date(a.created_at);
-        const today = new Date();
-        return eventDate.toDateString() === today.toDateString();
-    }).length;
-    
-    // Check if reset was applied today
-    const resetDate = localStorage.getItem('visitors_reset_date');
-    const resetApplied = localStorage.getItem('visitors_reset_applied');
-    const todayDate = new Date().toISOString().split('T')[0];
-    
-    let displayVisitors = Math.max(todayVisitors, 15);
-    
-    // If reset was applied today, show 0
-    if (resetApplied === 'true' && resetDate === todayDate) {
-        displayVisitors = 0;
-    }
-    
-    document.getElementById('today-visitors').textContent = displayVisitors.toLocaleString('he-IL');
-    
     // Update study levels distribution
     const studyLevels = {
         beginner: 0,
@@ -1364,34 +1343,6 @@ window.addEventListener('error', function(e) {
     showNotification('שגיאה במערכת. אנא רענן את הדף.', 'error');
 });
 
-// Reset today visitors function
-function resetTodayVisitors() {
-    if (confirm('האם אתה בטוח שברצונך לאפס את מונה הביקורים של היום?')) {
-        try {
-            // Reset local analytics for today
-            const today = new Date().toDateString();
-            currentData.analytics = currentData.analytics.filter(a => {
-                const eventDate = new Date(a.created_at);
-                return eventDate.toDateString() !== today;
-            });
-            
-            // Save reset state in localStorage so it persists after page refresh
-            const resetDate = new Date().toISOString().split('T')[0];
-            localStorage.setItem('visitors_reset_date', resetDate);
-            localStorage.setItem('visitors_reset_applied', 'true');
-            
-            // Update the display to 0
-            document.getElementById('today-visitors').textContent = '0';
-            
-            showNotification('מונה הביקורים של היום אופס בהצלחה', 'success');
-            console.log('🔄 Today visitors counter reset and saved to localStorage');
-            
-        } catch (error) {
-            console.error('Error resetting today visitors:', error);
-            showNotification('שגיאה באיפוס מונה הביקורים', 'error');
-        }
-    }
-}
 
 // Development helpers
 window.adminDebug = {

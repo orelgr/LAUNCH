@@ -564,3 +564,4 @@ function getTrafficSource() {
 
 // Initialize exit intent after delay
 setTimeout(initExitIntentTracking, 5000);
+
