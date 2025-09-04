@@ -211,13 +211,12 @@ def register():
         now = datetime.now().isoformat()
         cursor.execute('''
             INSERT INTO registrations 
-            (name, email, phone, newsletter, source, created_at, updated_at, ip_address, user_agent, lead_score, notes)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            (name, email, phone, source, created_at, updated_at, ip_address, user_agent, lead_score, notes)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             data.get('fullName', ''),
             data.get('email', ''),
             data.get('phone', ''),
-            1 if data.get('emailConsent', False) else 0,  # Convert boolean to integer
             data.get('source', 'website'),
             now,
             now,
