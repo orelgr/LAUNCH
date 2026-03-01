@@ -1,332 +1,391 @@
-/* Mobile Responsive Design for GmarUp Beta Landing */
+/* ============================================================
+   GmarUp — Responsive Breakpoints
+   ============================================================ */
 
-/* Extra small devices (portrait phones, less than 576px) */
+/* ---- Mobile: < 576px ---- */
 @media (max-width: 575px) {
     .container {
-        padding: 0 var(--space-md);
+        padding: 0 var(--space-lg);
     }
-    
-    .nav-container {
-        padding: var(--space-md);
+
+    /* Nav */
+    .nav__inner {
+        padding: 0 var(--space-lg);
     }
-    
-    .hero-beta {
-        padding: calc(70px + var(--space-2xl)) 0 var(--space-2xl);
-        min-height: 100vh;
+
+    .nav__toggle { display: flex; }
+
+    .nav__links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 280px;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        padding: 5rem var(--space-xl) var(--space-xl);
+        gap: var(--space-lg);
+        transform: translateX(100%);
+        transition: transform .3s ease;
+        box-shadow: -4px 0 24px rgba(0,0,0,.08);
+        z-index: 999;
     }
-    
-    .hero-container {
+
+    .nav__links.active {
+        transform: translateX(0);
+    }
+
+    .nav__link {
+        font-size: 1.05rem;
+        padding: var(--space-sm) 0;
+    }
+
+    .nav__link--cta {
+        text-align: center;
+        margin-top: var(--space-md);
+    }
+
+    /* Hero */
+    .hero {
+        padding: 100px 0 var(--space-3xl);
+        min-height: auto;
+    }
+
+    .hero__inner {
         grid-template-columns: 1fr;
         gap: var(--space-2xl);
+        padding: 0 var(--space-lg);
         text-align: center;
     }
-    
-    .title-main {
-        font-size: 2rem;
+
+    .hero__title {
+        font-size: 2.2rem;
     }
-    
-    .title-sub {
-        font-size: 1.125rem;
+
+    .hero__subtitle {
+        font-size: 1rem;
+        margin: 0 auto var(--space-xl);
     }
-    
-    .hero-ctas {
+
+    .hero__actions {
         flex-direction: column;
-        width: 100%;
+        align-items: center;
+        gap: var(--space-lg);
     }
-    
-    .btn-primary, .btn-secondary {
-        width: 100%;
+
+    .hero__visual {
+        display: none;
+    }
+
+    /* About */
+    .about { padding: var(--space-3xl) 0; }
+
+    .about__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+    }
+
+    .section-title { font-size: 1.8rem; }
+
+    /* Benefits */
+    .benefits { padding: var(--space-3xl) 0; }
+
+    .benefits__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    /* Memorial */
+    .memorial { padding: var(--space-3xl) 0; }
+
+    .memorial__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+        gap: var(--space-xl);
+    }
+
+    .memorial__image-wrap {
+        width: 140px;
+        height: 140px;
+    }
+
+    .memorial__name { font-size: 1.4rem; }
+
+    .memorial__quote {
+        max-width: 100%;
+    }
+
+    .memorial__actions {
+        display: flex;
         justify-content: center;
     }
-    
-    .about-content {
+
+    /* Register */
+    .register { padding: var(--space-3xl) 0; }
+
+    .register__grid {
         grid-template-columns: 1fr;
-        gap: var(--space-2xl);
-        text-align: center;
+        gap: var(--space-xl);
     }
-    
-    .section-title {
-        font-size: 2rem;
+
+    .register__form-wrap {
+        padding: var(--space-xl);
     }
-    
-    .benefits-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-lg);
+
+    .register__sidebar {
+        position: static;
     }
-    
-    .benefit-card.featured {
-        transform: none;
-    }
-    
-    .registration-content {
-        grid-template-columns: 1fr;
-        gap: var(--space-2xl);
-    }
-    
-    .actions-wrapper {
-        gap: var(--space-lg);
-    }
-    
-    .donation-amounts {
+
+    .donate-amounts {
         grid-template-columns: 1fr 1fr;
     }
-    
-    .memorial-content-simple {
-        padding: 0 var(--space-md);
-    }
-    
-    .symbol-star {
-        font-size: 3rem;
-    }
-    
-    .memorial-actions {
+
+    /* Footer */
+    .footer__inner {
         flex-direction: column;
-        gap: var(--space-md);
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        gap: var(--space-lg);
         text-align: center;
+        gap: var(--space-lg);
     }
-    
-    .footer-links {
+
+    .footer__links {
         justify-content: center;
         flex-wrap: wrap;
     }
-}
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) and (max-width: 767px) {
-    .hero-ctas {
-        justify-content: center;
+    /* Sticky CTA */
+    .sticky-cta__inner {
+        padding: var(--space-sm) var(--space-lg);
+        gap: var(--space-md);
     }
-    
-    .benefits-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .donation-amounts {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
-/* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 991px) {
-    .nav-mobile-toggle {
+    .sticky-cta__text {
+        font-size: .8rem;
         display: none;
     }
-    
-    .nav-menu {
-        display: flex !important;
+
+    .sticky-cta__inner .btn {
+        flex: 1;
     }
-    
-    .hero-container {
+
+    /* Modal */
+    .donation-amounts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Form */
+    .form__trust {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm);
+    }
+}
+
+/* ---- Small: 576–767px ---- */
+@media (min-width: 576px) and (max-width: 767px) {
+    .nav__toggle { display: flex; }
+
+    .nav__links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        padding: 5rem var(--space-xl) var(--space-xl);
+        gap: var(--space-lg);
+        transform: translateX(100%);
+        transition: transform .3s ease;
+        box-shadow: -4px 0 24px rgba(0,0,0,.08);
+        z-index: 999;
+    }
+
+    .nav__links.active {
+        transform: translateX(0);
+    }
+
+    .hero__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero__subtitle {
+        margin: 0 auto var(--space-xl);
+    }
+
+    .hero__actions {
+        justify-content: center;
+    }
+
+    .hero__visual {
+        display: none;
+    }
+
+    .about__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+    }
+
+    .benefits__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .memorial__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .register__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .register__sidebar {
+        position: static;
+    }
+}
+
+/* ---- Medium: 768–991px ---- */
+@media (min-width: 768px) and (max-width: 991px) {
+    .nav__toggle { display: none; }
+
+    .hero__inner {
         grid-template-columns: 1fr 1fr;
         gap: var(--space-3xl);
     }
-    
-    .benefits-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .registration-content {
-        grid-template-columns: 1.2fr 0.8fr;
-    }
-}
 
-/* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-    .hero-beta {
-        min-height: 100vh;
-    }
-    
-    .hero-container {
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: var(--space-4xl);
-    }
-    
-    .memorial-content-simple {
-        padding: 0;
-    }
-    
-    .benefits-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .about__grid {
+        grid-template-columns: 1fr 1fr;
         gap: var(--space-2xl);
     }
+
+    .benefits__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+    }
+
+    .register__grid {
+        grid-template-columns: 1.2fr .8fr;
+        gap: var(--space-xl);
+    }
 }
 
-/* Mobile menu animations */
+/* ---- Large: 992px+ ---- */
+@media (min-width: 992px) {
+    .nav__toggle { display: none; }
+
+    .hero { min-height: 100vh; }
+}
+
+/* ---- Mobile menu overlay ---- */
 @media (max-width: 767px) {
-    .nav-menu {
-        position: fixed;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--white);
-        border-top: 1px solid var(--gray-200);
-        padding: var(--space-lg);
-        flex-direction: column;
-        gap: var(--space-lg);
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 999;
-        box-shadow: var(--shadow-lg);
-    }
-    
-    .nav-menu.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-    
     .nav-mobile-toggle {
         display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
     }
-    
+
+    .nav-mobile-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition: all .3s ease;
+    }
+
     .nav-mobile-toggle.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
-    
-    .nav-mobile-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
+    .nav-mobile-toggle.active span:nth-child(2) { opacity: 0; }
     .nav-mobile-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Nav menu compat */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 280px;
+        height: 100vh;
+        background: var(--white);
+        flex-direction: column;
+        padding: 5rem var(--space-xl) var(--space-xl);
+        gap: var(--space-lg);
+        transform: translateX(100%);
+        transition: transform .3s ease;
+        box-shadow: -4px 0 24px rgba(0,0,0,.08);
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        transform: translateX(0);
     }
 }
 
-/* Touch interactions */
+/* ---- Touch ---- */
 @media (hover: none) {
-    .btn-primary:hover,
-    .btn-secondary:hover,
-    .benefit-card:hover,
-    .action-card:hover {
+    .btn:active,
+    .benefit:active,
+    .feature:active {
+        transform: scale(.97);
+        transition: transform .1s ease;
+    }
+
+    .btn:hover,
+    .benefit:hover,
+    .feature:hover {
         transform: none;
+        box-shadow: none;
     }
-    
-    .btn-primary:active,
-    .btn-secondary:active {
-        transform: scale(0.96);
-        transition: transform 0.1s ease;
-    }
-    
-    .benefit-card:active,
-    .action-card:active {
-        transform: scale(0.98);
-        transition: transform 0.1s ease;
-    }
-    
-    /* Enhanced touch targets */
-    .btn-primary,
-    .btn-secondary,
-    .btn-whatsapp,
+
+    .btn,
+    .donate-btn,
     .amount-btn {
         min-height: 48px;
         touch-action: manipulation;
     }
-    
-    .nav-link,
-    .nav-cta {
-        min-height: 44px;
-        touch-action: manipulation;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 }
 
-/* High DPI displays */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .memorial-image {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-    }
-}
-
-/* Landscape orientation on mobile */
-@media (max-height: 600px) and (orientation: landscape) and (max-width: 991px) {
-    .hero-beta {
-        min-height: auto;
-        padding: calc(70px + var(--space-xl)) 0 var(--space-xl);
-    }
-    
-    .title-main {
-        font-size: 2rem;
-    }
-    
-    .title-sub {
-        font-size: 1.125rem;
-    }
-    
-    .hero-ctas {
-        gap: var(--space-md);
-    }
-}
-
-/* Accessibility improvements for mobile */
+/* ---- Input zoom prevention (iOS) ---- */
 @media (max-width: 767px) {
-    /* Larger touch targets */
     .form-input,
     .form-select {
+        font-size: 16px;
         min-height: 48px;
-        font-size: 16px; /* Prevents zoom on iOS */
     }
-    
-    /* Better spacing for readability */
-    .about-description,
-    .hero-description {
-        font-size: 1rem;
-        line-height: 1.6;
+}
+
+/* ---- High DPI ---- */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .memorial__image {
+        image-rendering: -webkit-optimize-contrast;
     }
-    
-    /* Improved button spacing */
-    .btn-primary,
-    .btn-secondary {
-        padding: var(--space-lg) var(--space-xl);
-        font-size: 1rem;
+}
+
+/* ---- Landscape mobile ---- */
+@media (max-height: 600px) and (orientation: landscape) and (max-width: 991px) {
+    .hero {
+        min-height: auto;
+        padding: 90px 0 var(--space-2xl);
     }
-    
-    /* Better form layout */
-    .form-group {
-        margin-bottom: var(--space-xl);
-    }
-    
-    /* Checkbox mobile optimization */
-    .checkbox-wrapper {
-        gap: var(--space-md);
-        align-items: flex-start;
-    }
-    
-    .checkbox-custom {
-        width: 22px;
-        height: 22px;
-        margin-top: 1px;
-        border-width: 2px;
-    }
-    
-    .checkbox-label {
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
-    
-    .checkbox-text {
-        margin-top: 2px;
-    }
-    
-    /* Enhanced visual hierarchy */
-    .section-title {
-        font-size: 1.875rem;
-        line-height: 1.2;
-        margin-bottom: var(--space-lg);
-    }
-    
-    .section-subtitle {
-        font-size: 1rem;
-        line-height: 1.5;
-        margin-bottom: var(--space-xl);
+
+    .hero__title { font-size: 1.8rem; }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }

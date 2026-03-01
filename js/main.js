@@ -32,18 +32,19 @@ function safeInit(initFunction, componentName) {
 // Mobile Menu functionality
 function initMobileMenu() {
     try {
-        const menuToggle = document.querySelector('.nav-mobile-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-        
+        // Support both old and new nav selectors
+        const menuToggle = document.querySelector('.nav__toggle') || document.querySelector('.nav-mobile-toggle');
+        const navMenu = document.querySelector('.nav__links') || document.querySelector('.nav-menu');
+
         if (!menuToggle || !navMenu) {
             console.warn('Mobile menu elements not found');
             return;
         }
-        
+
         // Toggle menu function
         function toggleMenu(forceClose = false) {
             const isActive = menuToggle.classList.contains('active');
-            
+
             if (forceClose || isActive) {
                 menuToggle.classList.remove('active');
                 navMenu.classList.remove('active');
@@ -56,7 +57,7 @@ function initMobileMenu() {
                 document.body.style.overflow = 'hidden';
             }
         }
-        
+
         // Menu toggle click
         menuToggle.addEventListener('click', function(e) {
             e.preventDefault();
@@ -78,14 +79,14 @@ function initMobileMenu() {
                 toggleMenu(true);
             }
         });
-        
+
         // Close menu on escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 toggleMenu(true);
             }
         });
-        
+
     } catch (error) {
         console.error('Error initializing mobile menu:', error);
     }
@@ -204,7 +205,7 @@ function initFormHandling() {
                 // Remove loading state
                 submitBtn.classList.remove('loading', 'btn-loading');
                 submitBtn.disabled = false;
-                submitBtn.innerHTML = '<span class="btn-text">הירשם לגירסת בטא</span>';
+                submitBtn.innerHTML = '<span class="btn-text">השאירו פרטים</span>';
             });
         });
     }
@@ -289,23 +290,14 @@ function scrollToDonation() {
     }
 }
 
-// WhatsApp group join - will be overridden by dynamic-settings.js
+// WhatsApp direct chat - opens a conversation with pre-written message
 function joinWhatsApp() {
     try {
-        // This function will be replaced by dynamic-settings.js with current settings
-        // Fallback in case dynamic settings haven't loaded yet
-        const whatsappURL = 'https://wa.me/972502277660?text=היי%20אני%20רוצה%20להצטרף%20לקבוצת%20העדכונים%20של%20GmarUp';
-        
-        if (whatsappURL) {
-            window.open(whatsappURL, '_blank');
-            showSuccessMessage('פותח וואטסאפ...');
-            trackEvent('whatsapp_join', 'click');
-        } else {
-            throw new Error('WhatsApp link not configured');
-        }
+        var whatsappURL = 'https://wa.me/972502277660?text=' + encodeURIComponent('היי, אשמח לשמוע פרטים בנוגע לבטא של גמראפ');
+        window.open(whatsappURL, '_blank');
+        trackEvent('whatsapp_chat', 'click');
     } catch (error) {
         console.error('Error opening WhatsApp:', error);
-        showErrorMessage('שגיאה בפתיחת וואטסאפ. אנא נסה שוב.');
     }
 }
 
@@ -572,32 +564,26 @@ function shareDonation() {
 
 // Animation initialization
 function initAnimations() {
-    // Check if IntersectionObserver is supported
     if (!window.IntersectionObserver) {
-        // Fallback - just show all elements
-        document.querySelectorAll('.section-title, .benefit-card, .action-card').forEach(el => {
+        document.querySelectorAll('.section-title, .benefit, .feature, .sidebar-card, .benefit-card, .action-card').forEach(function(el) {
             el.classList.add('visible');
         });
         return;
     }
 
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Stop observing this element once it's visible
                 observer.unobserve(entry.target);
             }
         });
     }, {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -40px 0px'
     });
 
-    // Observe elements for animation
-    document.querySelectorAll('.section-title, .benefit-card, .action-card').forEach(el => {
-        // Add initial animation class
+    document.querySelectorAll('.section-title, .benefit, .feature, .sidebar-card, .benefit-card, .action-card').forEach(function(el) {
         el.classList.add('fade-in-up');
         observer.observe(el);
     });

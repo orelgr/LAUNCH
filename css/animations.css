@@ -1,10 +1,12 @@
-/* Clean Animations for GmarUp Beta Landing */
+/* ============================================================
+   GmarUp — Animations (Refined & Subtle)
+   ============================================================ */
 
-/* Base Animation Classes */
+/* Scroll-reveal */
 .fade-in-up {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
 }
 
 .fade-in-up.visible {
@@ -12,170 +14,120 @@
     transform: translateY(0);
 }
 
-/* Smooth transitions for interactive elements */
-.smooth-transition {
-    transition: all 0.3s ease;
-}
-
-/* Loading animations */
+/* Loading spinner */
 .loading-spinner {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     border: 2px solid transparent;
-    border-top: 2px solid currentColor;
+    border-top-color: currentColor;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin .7s linear infinite;
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
-/* Pulse animation for call-to-action elements */
+/* Subtle pulse for live indicator */
 .pulse {
-    animation: pulse 2s infinite;
+    animation: pulse 2.5s ease-in-out infinite;
 }
 
 @keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.7;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
 }
 
-/* Slide in from right for messages */
+/* Toast slide-in */
 .slide-in-right {
-    animation: slideInRight 0.3s ease-out;
+    animation: slideInRight .3s ease-out;
 }
 
 @keyframes slideInRight {
-    from {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
 
-/* Shake animation for form errors */
+/* Form error shake */
 .shake {
-    animation: shake 0.5s ease-in-out;
+    animation: shake .45s ease-in-out;
 }
 
 @keyframes shake {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    10%, 30%, 50%, 70%, 90% {
-        transform: translateX(-4px);
-    }
-    20%, 40%, 60%, 80% {
-        transform: translateX(4px);
-    }
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-3px); }
+    40%, 80% { transform: translateX(3px); }
 }
 
-/* Bounce animation for success */
+/* Success bounce */
 .bounce {
-    animation: bounce 0.6s ease-out;
+    animation: bounce .5s ease-out;
 }
 
 @keyframes bounce {
-    0%, 20%, 60%, 100% {
-        transform: scale(1);
-    }
-    40% {
-        transform: scale(1.05);
-    }
-    80% {
-        transform: scale(0.98);
-    }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
 }
 
-/* Hover effects */
+/* Hover lift */
 .hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform .25s ease, box-shadow .25s ease;
 }
-
 .hover-lift:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 24px rgba(0,0,0,.08);
 }
 
-/* Mobile-friendly animations */
-@media (max-width: 768px) {
-    .fade-in-up {
-        transform: translateY(20px);
-    }
-    
-    .hover-lift:hover {
-        transform: none;
-    }
-    
-    .hover-lift:active {
-        transform: scale(0.98);
-        transition: transform 0.1s ease;
-    }
-}
-
-/* Form success animation */
+/* Form states */
 .form-success {
-    animation: formSuccess 0.5s ease-out;
+    animation: formSuccess .4s ease-out;
 }
 
 @keyframes formSuccess {
-    0% {
-        transform: scale(1);
-        background: var(--white);
-    }
-    50% {
-        transform: scale(1.02);
-        background: #f0f9ff;
-    }
-    100% {
-        transform: scale(1);
-        background: var(--white);
-    }
+    0% { background: var(--white); }
+    50% { background: var(--teal-light, #e6f5f1); }
+    100% { background: var(--white); }
 }
 
-/* Error shake animation */
 .form-error {
-    animation: formError 0.5s ease-out;
+    animation: formError .45s ease-out;
 }
 
 @keyframes formError {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    10%, 30%, 50%, 70%, 90% {
-        transform: translateX(-3px);
-    }
-    20%, 40%, 60%, 80% {
-        transform: translateX(3px);
-    }
+    0%, 100% { transform: translateX(0); }
+    25%, 75% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
 }
 
-/* Loading pulse for buttons */
+/* Button loading */
 .btn-loading {
-    animation: loadingPulse 1.5s ease-in-out infinite;
+    animation: btnPulse 1.5s ease-in-out infinite;
     pointer-events: none;
 }
 
-@keyframes loadingPulse {
-    0%, 100% {
-        opacity: 1;
+@keyframes btnPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .6; }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .fade-in-up {
+        transform: translateY(16px);
     }
-    50% {
-        opacity: 0.7;
+
+    .hover-lift:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .hover-lift:active {
+        transform: scale(.98);
+        transition: transform .1s ease;
     }
 }
 
-/* Reduce motion for accessibility */
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
     *,
     ::before,
@@ -185,14 +137,7 @@
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
-    
-    .pulse,
-    .form-success,
-    .form-error,
-    .btn-loading {
-        animation: none;
-    }
-    
+
     .fade-in-up {
         opacity: 1;
         transform: none;
