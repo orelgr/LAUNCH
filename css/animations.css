@@ -1,0 +1,201 @@
+/* Clean Animations for GmarUp Beta Landing */
+
+/* Base Animation Classes */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Smooth transitions for interactive elements */
+.smooth-transition {
+    transition: all 0.3s ease;
+}
+
+/* Loading animations */
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Pulse animation for call-to-action elements */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Slide in from right for messages */
+.slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Shake animation for form errors */
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-4px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(4px);
+    }
+}
+
+/* Bounce animation for success */
+.bounce {
+    animation: bounce 0.6s ease-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 60%, 100% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.05);
+    }
+    80% {
+        transform: scale(0.98);
+    }
+}
+
+/* Hover effects */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile-friendly animations */
+@media (max-width: 768px) {
+    .fade-in-up {
+        transform: translateY(20px);
+    }
+    
+    .hover-lift:hover {
+        transform: none;
+    }
+    
+    .hover-lift:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+}
+
+/* Form success animation */
+.form-success {
+    animation: formSuccess 0.5s ease-out;
+}
+
+@keyframes formSuccess {
+    0% {
+        transform: scale(1);
+        background: var(--white);
+    }
+    50% {
+        transform: scale(1.02);
+        background: #f0f9ff;
+    }
+    100% {
+        transform: scale(1);
+        background: var(--white);
+    }
+}
+
+/* Error shake animation */
+.form-error {
+    animation: formError 0.5s ease-out;
+}
+
+@keyframes formError {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-3px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(3px);
+    }
+}
+
+/* Loading pulse for buttons */
+.btn-loading {
+    animation: loadingPulse 1.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes loadingPulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .pulse,
+    .form-success,
+    .form-error,
+    .btn-loading {
+        animation: none;
+    }
+    
+    .fade-in-up {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}

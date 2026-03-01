@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GmarUp - הרשמה לגירסת בטא | לימוד גמרא עם AI</title>
+    <meta name="description" content="הירשם לגירסת הבטא של GmarUp - כלי החדשני ללימוד גמרא עם בינה מלאכותית. הזדמנות חד פעמית להיות בין הראשונים!">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- Background -->
+    <div class="background-overlay"></div>
+    
+    <!-- Clean Modern Navigation -->
+    <nav class="nav-clean">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/images/logo.png" alt="GmarUp" class="logo-image">
+                <div class="logo-text-wrapper">
+                    <span class="logo-text">Gmar<span class="logo-accent">Up</span></span>
+                    <span class="logo-subtitle">הרשמה לגירסת הבטא</span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <a href="#about" class="nav-link">על הפרויקט</a>
+                <a href="#memorial" class="nav-link">לעילוי נשמת</a>
+                <a href="#register" class="nav-cta">הירשם לבטא</a>
+            </div>
+            <button class="nav-mobile-toggle" aria-label="תפריט ניווט" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Clean & Focused -->
+    <section class="hero-beta">
+        <div class="hero-container">
+            <div class="hero-content">
+                
+                <h1 class="hero-title">
+                    <span class="title-main">GmarUp</span>
+                    <span class="title-sub">חברותא דיגיטלית חכמה</span>
+                </h1>
+                
+                <p class="hero-description">
+                    לימוד גמרא בצורה אינטרקטיבית בעזרת AI  הרשמה חינמית למקומות מוגבלים!
+                </p>
+                
+                <div class="urgency-banner">
+                    <span class="urgency-text">נותרו מעט מקומות לגירסת הבטא </span>
+                </div>
+                
+                <div class="hero-ctas">
+                    <button class="btn-primary-large" onclick="scrollToRegistration()" aria-label="הירשם לגירסת הבטא של GmarUp">
+                         הירשם עכשיו חינם
+                    </button>
+                    <div class="hero-sub-text">
+                        או <a href="#" onclick="joinWhatsApp()" class="link-secondary">הצטרף ישירות לקבוצת עדכונים</a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- About Project Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">מה זה GmarUp?</h2>
+                    <p class="about-description">
+                        כלי חדשני שמשלב בינה מלאכותית מתקדמת עם עולם לימוד הגמרא. 
+                        המערכת מבינה את שפת התלמוד, מזהה דפוסים ומעניקה הסברים מותאמים לרמה שלכם.
+                    </p>
+                    
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">🎯</span>
+                            <span>תשובות מדויקות לשאלות בגמרא</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📚</span>
+                            <span>חיבור לכל הש״ס ומפרשים</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🧠</span>
+                            <span>הסברים מותאמים לרמת הלומד</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Beta Benefits Section -->
+    <section class="beta-benefits">
+        <div class="container">
+            <div class="benefits-header">
+                <h2 class="section-title">למה להירשם עכשיו לגירסת הבטא?</h2>
+                <p class="section-subtitle">הזדמנות חד פעמית להיות חלק מהמהפכה</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎁</div>
+                    <h3>גישה חינמית מלאה</h3>
+                    <p>כל המשתמשים בגירסת הבטא יקבלו גישה חינמית לכל התכונות</p>
+                </div>
+                
+                <div class="benefit-card featured">
+                    <div class="benefit-badge">הכי חשוב</div>
+                    <div class="benefit-icon">🚀</div>
+                    <h3>הראשונים להשתמש</h3>
+                    <p>תהיו הראשונים לחוות את הטכנולוגיה המהפכנית</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">💬</div>
+                    <h3>השפעה על הפיתוח</h3>
+                    <p>המשוב שלכם יעצב את הגירסה הסופית של המוצר</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memorial Section - Elegant -->
+    <section class="memorial-modern" id="memorial">
+        <div class="container">
+            <div class="memorial-header">
+                <span class="memorial-label">לעילוי נשמת</span>
+                <h2 class="memorial-title">רס״ל אור מנצור הי״ד</h2>
+                <p class="memorial-subtitle">גיבור ישראל שנפל על הגנת המולדת</p>
+            </div>
+            
+            <div class="memorial-content-simple">
+                <div class="memorial-text-center">
+                    <div class="memorial-symbol">
+                        <img src="assets/images/ohr-mantzur.jpg" alt="אור מנצור" class="memorial-image" loading="lazy">
+                        <div class="memorial-dates">תשס״ג - תשפ״ד</div>
+                    </div>
+                    
+                    <p class="memorial-quote">
+                        "אור היה דוגמה ומופת של מסירות נפש, אהבת התורה ואהבת העם. 
+                        פרויקט זה מוקדש לזכרו הטהור ולעילוי נשמתו."
+                    </p>
+                    
+                    <div class="memorial-actions">
+                        <button class="btn-memorial-secondary" onclick="shareDonation()">
+                             תרום לזכרו
+                        </button>
+                    </div>
+                    
+                    <div class="memorial-info">
+                        <p class="memorial-dedication">
+                            התרומות מועברות להמשך פיתוח הכלי ללימוד הגמרא לעילוי נשמתו
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section - Dual Focus -->
+    <section class="registration-section" id="register">
+        <div class="container">
+            <div class="registration-header">
+                <h2 class="section-title">הירשם לגירסת הבטא</h2>
+                <p class="section-subtitle">הצטרף לרשימת ההמתנה וקבל עדכונים על השקת המוצר</p>
+            </div>
+            
+            <div class="registration-content">
+                <!-- Registration Form -->
+                <div class="registration-form-wrapper">
+                    <form id="registrationForm" class="beta-form">
+                        <h3>רישום לגירסת בטא</h3>
+                        
+                        <div class="form-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <span class="progress-text" id="progressText">0/4 שדות מולאו</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fullName" class="form-label">שם מלא *</label>
+                            <input type="text" id="fullName" name="fullName" required class="form-input" aria-describedby="fullName-error" autocomplete="name">
+                            <div id="fullName-error" class="field-error" role="alert" aria-live="polite"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">כתובת אימייל *</label>
+                            <input type="email" id="email" name="email" required class="form-input" aria-describedby="email-error" autocomplete="email" placeholder="example@gmail.com">
+                            <div id="email-error" class="field-error" role="alert" aria-live="polite"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="form-label">מספר טלפון *</label>
+                            <input type="tel" id="phone" name="phone" required class="form-input" aria-describedby="phone-error" autocomplete="tel" placeholder="050-1234567">
+                            <div id="phone-error" class="field-error" role="alert" aria-live="polite"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="studyLevel" class="form-label">רמת לימוד (אופציונלי)</label>
+                            <select id="studyLevel" name="studyLevel" class="form-input">
+                                <option value="">בחר רמת לימוד (לא חובה)</option>
+                                <option value="beginner">🌱 מתחיל - רק התחלתי ללמוד גמרא</option>
+                                <option value="intermediate">📚 בינוני - יש לי ידע בסיסי בגמרא</option>
+                                <option value="advanced">🎓 מתקדם - אני לומד גמרא ברמה גבוהה</option>
+                            </select>
+                            <div id="studyLevel-error" class="field-error" role="alert" aria-live="polite"></div>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="emailConsent" name="emailConsent" required class="checkbox-input" aria-describedby="emailConsent-error">
+                                <label for="emailConsent" class="checkbox-label">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">אני מאשר/ת לקבל עדכונים על המוצר ופיתוחו באימייל *</span>
+                                </label>
+                            </div>
+                            <div id="emailConsent-error" class="field-error" role="alert" aria-live="polite"></div>
+                        </div>
+                        
+                        <div class="security-badges">
+                            <div class="security-badge">
+                                🔒 הצפנה מתקדמת
+                            </div>
+                            <div class="security-badge">
+                                🛡️ נתונים מאובטחים
+                            </div>
+                            <div class="security-badge">
+                                ✅ ללא ספאם
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">
+                            <span class="btn-text">🚀 הירשם לגירסת בטא</span>
+                            <span class="btn-loader"></span>
+                        </button>
+                        
+                        <div class="form-disclaimer">
+                            <p>✅ הרישום חינמי ללא התחייבות</p>
+                            <p>📧 עדכונים על המוצר בלבד</p>
+                            <p class="privacy-notice">🔐 <a href="#privacy" onclick="showPrivacy()" class="privacy-link">מדיניות פרטיות</a> - הנתונים מוגנים ב-SSL</p>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- WhatsApp & Donations -->
+                <div class="actions-wrapper">
+                    <div class="action-card whatsapp-card">
+                        <div class="action-icon"><i class="fa-brands fa-whatsapp" style="color: #25D366; font-size: 2.5rem;"></i></div>
+                        <h3>קבוצת עדכונים</h3>
+                        <p>הצטרפו לקבוצת הוואטסאפ לעדכונים מיידיים על התקדמות הפיתוח</p>
+                        <button class="btn-whatsapp" onclick="joinWhatsApp()">
+                            הצטרף לקבוצה
+                        </button>
+                    </div>
+                    
+                    <div class="action-card donation-card">
+                        <div class="action-icon">💝</div>
+                        <h3>תרומה לזכרו של אור</h3>
+                        <p>תרמו לפיתוח המוצר לעילוי נשמת רס״ל אור מנצור הי״ד</p>
+                        <div class="donation-amounts">
+                            <button class="amount-btn" onclick="donate(50)">₪50</button>
+                            <button class="amount-btn" onclick="donate(100)">₪100</button>
+                            <button class="amount-btn" onclick="donate(200)">₪200</button>
+                            <button class="amount-btn" onclick="donate(400)">₪400</button>
+                            <button class="amount-btn custom" onclick="showDonationModal()">תרומה מותאמת</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Footer -->
+    <footer class="footer-simple">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo" onclick="adminSecretAccess(event)" style="cursor: pointer;">Gmar<span class="logo-accent">Up</span></h3>
+                    <p>בפיתוח - גירסת בטא בקרוב</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="https://wa.me/972539646189">צור קשר</a>
+                    <a href="#memorial">לעילוי נשמת אור</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 GmarUp - לעילוי נשמת רס״ל אור מנצור הי״ד</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Enhanced Donation Modal -->
+    <div id="donation-modal-main" class="donation-modal">
+        <div class="donation-modal-content">
+            <div class="donation-modal-header">
+                <h3 class="donation-modal-title">💝 תרומה לזכר אור מנצור הי״ד</h3>
+                <button onclick="closeDonationModal()" class="modal-close-btn" aria-label="סגור את חלון התרומה">×</button>
+            </div>
+            
+            <p style="color: var(--gray-600); margin-bottom: var(--space-xl); line-height: 1.6;">
+                💫 תרומתכם תעזור לפתח את הכלי המיוחד הזה לעילוי נשמתו
+            </p>
+            
+            <div class="donation-amounts-grid">
+                <button class="amount-btn" data-amount="50">₪50</button>
+                <button class="amount-btn" data-amount="100">₪100</button>
+                <button class="amount-btn popular" data-amount="180">₪180</button>
+                <button class="amount-btn" data-amount="365">₪365</button>
+            </div>
+            
+            <input type="number" id="modal-custom-amount-main" placeholder="או הכנס סכום אחר..." class="custom-amount-input" min="10" max="10000">
+            
+            <div class="modal-actions">
+                <button id="modal-donate-btn-main" class="btn btn-primary">🚀 תרום עכשיו</button>
+                <button onclick="closeDonationModal()" class="btn btn-secondary">ביטול</button>
+            </div>
+            
+            <p style="color: var(--gray-500); font-size: 0.875rem; margin-top: var(--space-lg); line-height: 1.5;">
+                🔒 תשלום מאובטח דרך ביט | 📞 לשאלות: 050-227-7660
+            </p>
+        </div>
+    </div>
+
+    <!-- Sticky CTA Bar -->
+    <div class="sticky-cta" id="stickyCta">
+        <div class="sticky-cta-content">
+            <div class="sticky-cta-text">
+                 מספר המקומות בבטא החינמית מוגבל - הירשם עכשיו!
+            </div>
+            <button class="sticky-cta-btn" onclick="scrollToRegistration()">
+                הירשם חינם
+            </button>
+            <button class="sticky-cta-close" onclick="document.getElementById('stickyCta').classList.remove('show')" aria-label="סגור">
+                ×
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/form-handler.js"></script>
+    
+    <!-- Page Load Complete -->
+    <script>
+        window.addEventListener('load', function() {
+            console.log('🎉 All resources loaded successfully');
+            document.body.classList.add('page-loaded');
+            
+            // Lazy load background images for better performance
+            const sections = document.querySelectorAll('.about-section, .beta-benefits, .registration-section');
+            sections.forEach(section => {
+                section.style.backgroundImage = 'none'; // Remove initial bg
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                }, 100);
+            });
+        });
+        
+        // Enhanced accessibility 
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePrivacy();
+                const stickyCta = document.getElementById('stickyCta');
+                if (stickyCta && stickyCta.classList.contains('show')) {
+                    stickyCta.classList.remove('show');
+                }
+            }
+        });
+        
+        // Performance optimization - reduce background blur on scroll
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(function() {
+                    const scrollY = window.scrollY;
+                    const backgroundOverlay = document.querySelector('.background-overlay');
+                    if (backgroundOverlay && scrollY > 100) {
+                        backgroundOverlay.style.backdropFilter = 'blur(3px)';
+                    } else if (backgroundOverlay) {
+                        backgroundOverlay.style.backdropFilter = 'blur(6px)';
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+    
+    <!-- Dynamic Settings Loader -->
+    <script src="js/dynamic-settings.js"></script>
+
+</body>
+</html>

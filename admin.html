@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>דשבורד ניהול - GmarUp</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Admin Styles -->
+    <link rel="stylesheet" href="css/admin.css">
+    
+</head>
+<body>
+    <!-- Authentication Overlay -->
+    <div id="auth-overlay" class="auth-overlay">
+        <div class="auth-card">
+            <h2 class="auth-title">🔐 כניסה לדשבורד ניהול</h2>
+            <form id="auth-form" class="auth-form">
+                <input type="password" id="admin-password" class="form-input" placeholder="הכנס קוד אדמין" required>
+                <button type="submit" class="btn btn-primary">כניסה</button>
+            </form>
+            <p style="text-align: center; font-size: 0.875rem; color: var(--gray-500); margin-top: 1rem;">
+                📞 שכחת את הקוד? חייג <span id="admin-contact-phone">050-227-7660</span>
+            </p>
+        </div>
+    </div>
+
+    <div id="dashboard" class="dashboard-container" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <h1>GmarUp</h1>
+                    <span class="logo-badge">אדמין</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-group">
+                    <div class="nav-group-title">ראשי</div>
+                    <button class="nav-item active" data-section="dashboard">
+                        <span class="nav-icon">📊</span>
+                        <span>דשבורד</span>
+                    </button>
+                </div>
+                
+                <div class="nav-group">
+                    <div class="nav-group-title">נתונים</div>
+                    <button class="nav-item" data-section="registrations">
+                        <span class="nav-icon">👥</span>
+                        <span>רישומים</span>
+                    </button>
+                    <button class="nav-item" data-section="donations">
+                        <span class="nav-icon">💝</span>
+                        <span>תרומות</span>
+                    </button>
+                    <button class="nav-item" data-section="analytics">
+                        <span class="nav-icon">📈</span>
+                        <span>אנליטיקס</span>
+                    </button>
+                </div>
+                
+                <div class="nav-group">
+                    <div class="nav-group-title">כלים</div>
+                    <button class="nav-item" data-section="communications">
+                        <span class="nav-icon">📧</span>
+                        <span>תקשורת</span>
+                    </button>
+                    <button class="nav-item" data-section="export">
+                        <span class="nav-icon">📁</span>
+                        <span>ייצוא נתונים</span>
+                    </button>
+                    <button class="nav-item" data-section="settings">
+                        <span class="nav-icon">⚙️</span>
+                        <span>הגדרות</span>
+                    </button>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Mobile Backdrop -->
+        <div class="mobile-backdrop" onclick="toggleSidebar()"></div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <h1 id="main-title" class="header-title">דשבורד ראשי</h1>
+                <div class="header-actions">
+                    <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="פתח תפריט" aria-expanded="false">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                    </button>
+                    <button class="btn" onclick="refreshData()">
+                        <span>🔄</span>
+                        <span>רענן נתונים</span>
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.adminDebug.testConnection().then(r => alert('Test results: ' + JSON.stringify(r)))">
+                        <span>🔧</span>
+                        <span>בדוק חיבור</span>
+                    </button>
+                    <button class="btn btn-danger" onclick="logout()">
+                        <span>🚪</span>
+                        <span>יציאה</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="main-body">
+                <!-- Dashboard Overview -->
+                <section id="dashboard-section" class="content-section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">סך הרישומים</div>
+                                <div class="stat-icon blue">👥</div>
+                            </div>
+                            <div class="stat-number" id="total-registrations">---</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">סך התרומות</div>
+                                <div class="stat-icon green">💰</div>
+                            </div>
+                            <div class="stat-number" id="total-donations-amount">---</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">מספר תרומות</div>
+                                <div class="stat-icon orange">💝</div>
+                            </div>
+                            <div class="stat-number" id="total-donations-count">---</div>
+                        </div>
+
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-title">התפלגות רמות לימוד</div>
+                                <div class="stat-icon blue">🎓</div>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>🌱 מתחילים:</span>
+                                    <span id="beginners-count" style="font-weight: 600;">---</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>📚 בינוניים:</span>
+                                    <span id="intermediate-count" style="font-weight: 600;">---</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>🎓 מתקדמים:</span>
+                                    <span id="advanced-count" style="font-weight: 600;">---</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <div class="quick-action" onclick="switchToSection('registrations')">
+                            <div class="quick-action-icon">👥</div>
+                            <div class="quick-action-title">רישומים חדשים</div>
+                            <div class="quick-action-desc">צפייה וניהול רישומים</div>
+                        </div>
+                        <div class="quick-action" onclick="switchToSection('donations')">
+                            <div class="quick-action-icon">💝</div>
+                            <div class="quick-action-title">תרומות</div>
+                            <div class="quick-action-desc">מעקב אחר תרומות</div>
+                        </div>
+                        <div class="quick-action" onclick="exportData('all')">
+                            <div class="quick-action-icon">📊</div>
+                            <div class="quick-action-title">ייצוא נתונים</div>
+                            <div class="quick-action-desc">הורד דוח מלא</div>
+                        </div>
+                        <div class="quick-action" onclick="sendCommunication()">
+                            <div class="quick-action-icon">📧</div>
+                            <div class="quick-action-title">שליחת מייל</div>
+                            <div class="quick-action-desc">תקשורת עם רשומים</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Registrations Section -->
+                <section id="registrations-section" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">רישומים</h2>
+                        <div class="header-actions">
+                            <button class="btn" onclick="exportData('registrations')">ייצוא</button>
+                            <button class="btn btn-primary" onclick="refreshRegistrations()">רענן</button>
+                        </div>
+                    </div>
+                    
+                    <div class="section-body">
+                        <div class="filters-row">
+                            <div class="filter-group">
+                                <label class="filter-label">סטטוס:</label>
+                                <select id="reg-status-filter" class="filter-select" onchange="filterRegistrations()">
+                                    <option value="">הכל</option>
+                                    <option value="pending_beta">ממתין לבטא</option>
+                                    <option value="contacted">נוצר קשר</option>
+                                    <option value="completed">הושלם</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">מקור:</label>
+                                <select id="reg-source-filter" class="filter-select" onchange="filterRegistrations()">
+                                    <option value="">הכל</option>
+                                    <option value="beta_landing">דף נחיתה</option>
+                                    <option value="whatsapp">ווטסאפ</option>
+                                    <option value="direct">ישיר</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">רמת לימוד:</label>
+                                <select id="reg-level-filter" class="filter-select" onchange="filterRegistrations()">
+                                    <option value="">הכל</option>
+                                    <option value="beginner">מתחילים</option>
+                                    <option value="intermediate">בינוניים</option>
+                                    <option value="advanced">מתקדמים</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>פעולות</th>
+                                        <th>סטטוס</th>
+                                        <th>תאריך</th>
+                                        <th>רמת לימוד</th>
+                                        <th>מקור</th>
+                                        <th>טלפון</th>
+                                        <th>אימייל</th>
+                                        <th>שם</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="registrations-table">
+                                    <tr>
+                                        <td colspan="9" class="loading">
+                                            טוען נתונים...
+                                            <div class="spinner"></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Donations Section -->
+                <section id="donations-section" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">תרומות</h2>
+                        <div class="header-actions">
+                            <button class="btn" onclick="exportData('donations')">ייצוא</button>
+                            <button class="btn btn-primary" onclick="refreshDonations()">רענן</button>
+                        </div>
+                    </div>
+                    
+                    <div class="section-body">
+                        <div class="filters-row">
+                            <div class="filter-group">
+                                <label class="filter-label">סטטוס:</label>
+                                <select id="don-status-filter" class="filter-select" onchange="filterDonations()">
+                                    <option value="">הכל</option>
+                                    <option value="completed">הושלם</option>
+                                    <option value="pending">ממתין</option>
+                                    <option value="failed">נכשל</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>פעולות</th>
+                                        <th>סטטוס</th>
+                                        <th>תאריך</th>
+                                        <th>הודעה</th>
+                                        <th>טלפון</th>
+                                        <th>אימייל</th>
+                                        <th>סכום</th>
+                                        <th>שם התורם</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="donations-table">
+                                    <tr>
+                                        <td colspan="9" class="loading">
+                                            טוען נתונים...
+                                            <div class="spinner"></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Analytics Section -->
+                <section id="analytics-section" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">אנליטיקס</h2>
+                        <div class="header-actions">
+                            <button class="btn" onclick="exportData('analytics')">ייצוא</button>
+                            <button class="btn btn-primary" onclick="refreshAnalytics()">רענן</button>
+                        </div>
+                    </div>
+                    
+                    <div class="section-body">
+                        <div class="table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>תאריך</th>
+                                        <th>IP</th>
+                                        <th>URL</th>
+                                        <th>ערך</th>
+                                        <th>תווית</th>
+                                        <th>פעולה</th>
+                                        <th>קטגוריה</th>
+                                        <th>מזהה סשן</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="analytics-table">
+                                    <tr>
+                                        <td colspan="9" class="loading">
+                                            טוען נתונים...
+                                            <div class="spinner"></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Communications Section -->
+                <section id="communications-section" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">תקשורת</h2>
+                        <div class="header-actions">
+                            <button class="btn btn-primary" onclick="createCommunication()">הודעה חדשה</button>
+                        </div>
+                    </div>
+                    
+                    <div class="section-body">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📧</div>
+                            <div class="empty-state-title">אין הודעות שנשלחו</div>
+                            <div class="empty-state-desc">כאן תוכל לשלוח הודעות לרשומים ולעקוב אחר התקשורת</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Export Section -->
+                <section id="export-section" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">ייצוא נתונים</h2>
+                    </div>
+                    
+                    <div class="section-body">
+                        <div class="quick-actions">
+                            <div class="quick-action" onclick="exportData('registrations')">
+                                <div class="quick-action-icon">👥</div>
+                                <div class="quick-action-title">ייצוא רישומים</div>
+                                <div class="quick-action-desc">הורד קובץ CSV עם כל הרישומים</div>
+                            </div>
+                            <div class="quick-action" onclick="exportData('donations')">
+                                <div class="quick-action-icon">💝</div>
+                                <div class="quick-action-title">ייצוא תרומות</div>
+                                <div class="quick-action-desc">הורד קובץ CSV עם כל התרומות</div>
+                            </div>
+                            <div class="quick-action" onclick="exportData('analytics')">
+                                <div class="quick-action-icon">📈</div>
+                                <div class="quick-action-title">ייצוא אנליטיקס</div>
+                                <div class="quick-action-desc">הורד נתוני אנליטיקס</div>
+                            </div>
+                            <div class="quick-action" onclick="exportData('all')">
+                                <div class="quick-action-icon">📁</div>
+                                <div class="quick-action-title">ייצוא מלא</div>
+                                <div class="quick-action-desc">הורד את כל הנתונים כקובץ אחד</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings-section" class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">הגדרות מערכת</h2>
+                        <div class="header-actions">
+                            <button class="btn btn-primary" onclick="saveSettings()">שמור הגדרות</button>
+                        </div>
+                    </div>
+                    
+                    <div class="section-body">
+                        <div id="settings-form">
+                            <div class="loading">
+                                טוען הגדרות...
+                                <div class="spinner"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+    
+    <!-- Update admin contact phone from settings -->
+    <script>
+        // Update admin contact phone when page loads
+        async function updateAdminContactInfo() {
+            try {
+                const response = await fetch('/api/settings');
+                if (response.ok) {
+                    const settings = await response.json();
+                    const phoneElement = document.getElementById('admin-contact-phone');
+                    if (phoneElement && settings.bit_phone) {
+                        phoneElement.textContent = settings.bit_phone;
+                    }
+                }
+            } catch (error) {
+                console.log('Could not update admin contact info:', error.message);
+            }
+        }
+        
+        // Update on page load
+        document.addEventListener('DOMContentLoaded', updateAdminContactInfo);
+    </script>
+</body>
+</html>
