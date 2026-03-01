@@ -13,36 +13,49 @@
         padding: 0 var(--space-lg);
     }
 
-    .nav__toggle { display: flex; }
+    .nav__toggle { display: flex; z-index: 1002; }
 
     .nav__links {
         position: fixed;
-        top: 0;
-        right: 0;
-        width: 280px;
+        inset: 0;
+        width: 100%;
         height: 100vh;
-        background: var(--white);
+        height: 100dvh;
+        background: rgba(255,255,255,.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
-        padding: 5rem var(--space-xl) var(--space-xl);
-        gap: var(--space-lg);
-        transform: translateX(100%);
-        transition: transform .3s ease;
-        box-shadow: -4px 0 24px rgba(0,0,0,.08);
-        z-index: 999;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xl);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .3s ease, visibility .3s ease;
+        z-index: 1001;
     }
 
     .nav__links.active {
-        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
     }
 
     .nav__link {
-        font-size: 1.05rem;
-        padding: var(--space-sm) 0;
+        font-size: 1.25rem;
+        font-weight: 500;
+        padding: var(--space-sm) var(--space-lg);
+        color: var(--ink);
+        transition: color .2s;
+    }
+
+    .nav__link:hover {
+        color: var(--blue);
     }
 
     .nav__link--cta {
         text-align: center;
-        margin-top: var(--space-md);
+        margin-top: var(--space-lg);
+        padding: .75rem 2.5rem;
+        font-size: 1.1rem;
     }
 
     /* Hero */
@@ -183,26 +196,30 @@
 
 /* ---- Small: 576–767px ---- */
 @media (min-width: 576px) and (max-width: 767px) {
-    .nav__toggle { display: flex; }
+    .nav__toggle { display: flex; z-index: 1002; }
 
     .nav__links {
         position: fixed;
-        top: 0;
-        right: 0;
-        width: 300px;
+        inset: 0;
+        width: 100%;
         height: 100vh;
-        background: var(--white);
+        height: 100dvh;
+        background: rgba(255,255,255,.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
-        padding: 5rem var(--space-xl) var(--space-xl);
-        gap: var(--space-lg);
-        transform: translateX(100%);
-        transition: transform .3s ease;
-        box-shadow: -4px 0 24px rgba(0,0,0,.08);
-        z-index: 999;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xl);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .3s ease, visibility .3s ease;
+        z-index: 1001;
     }
 
     .nav__links.active {
-        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
     }
 
     .hero__inner {
@@ -278,7 +295,7 @@
     .hero { min-height: 100vh; }
 }
 
-/* ---- Mobile menu overlay ---- */
+/* ---- Mobile menu overlay (compat) ---- */
 @media (max-width: 767px) {
     .nav-mobile-toggle {
         display: flex;
@@ -288,6 +305,7 @@
         border: none;
         cursor: pointer;
         padding: 6px;
+        z-index: 1002;
     }
 
     .nav-mobile-toggle span {
@@ -307,25 +325,29 @@
         transform: rotate(-45deg) translate(5px, -5px);
     }
 
-    /* Nav menu compat */
+    /* Nav menu compat — same full-screen overlay */
     .nav-menu {
         position: fixed;
-        top: 0;
-        right: 0;
-        width: 280px;
+        inset: 0;
+        width: 100%;
         height: 100vh;
-        background: var(--white);
+        height: 100dvh;
+        background: rgba(255,255,255,.97);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
-        padding: 5rem var(--space-xl) var(--space-xl);
-        gap: var(--space-lg);
-        transform: translateX(100%);
-        transition: transform .3s ease;
-        box-shadow: -4px 0 24px rgba(0,0,0,.08);
-        z-index: 999;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xl);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .3s ease, visibility .3s ease;
+        z-index: 1001;
     }
 
     .nav-menu.active {
-        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
     }
 }
 

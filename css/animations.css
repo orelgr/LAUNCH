@@ -85,7 +85,7 @@
 
 @keyframes formSuccess {
     0% { background: var(--white); }
-    50% { background: var(--teal-light, #e6f5f1); }
+    50% { background: var(--gold-pale, #faf5e8); }
     100% { background: var(--white); }
 }
 
