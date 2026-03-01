@@ -48,7 +48,7 @@
     }
 
     .nav__link:hover {
-        color: var(--blue);
+        color: var(--gold);
     }
 
     .nav__link--cta {
