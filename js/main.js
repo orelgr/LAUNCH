@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         safeInit(initSmoothScrolling, 'Smooth Scrolling');
         safeInit(initAnimations, 'Animations');
         safeInit(initDonationModalEvents, 'Donation Modal Events');
+        safeInit(initChatDemo, 'Chat Demo');
         safeInit(trackPageView, 'Analytics');
         
         console.log('✅ GmarUp Beta Landing Page initialized successfully');
@@ -565,7 +566,7 @@ function shareDonation() {
 // Animation initialization
 function initAnimations() {
     if (!window.IntersectionObserver) {
-        document.querySelectorAll('.section-title, .benefit, .feature, .sidebar-card, .benefit-card, .action-card').forEach(function(el) {
+        document.querySelectorAll('.section-title, .benefit, .feature, .sidebar-card, .benefit-card, .action-card, .feature-card, .step, .audience-card, .faq__item, .stat').forEach(function(el) {
             el.classList.add('visible');
         });
         return;
@@ -583,10 +584,44 @@ function initAnimations() {
         rootMargin: '0px 0px -40px 0px'
     });
 
-    document.querySelectorAll('.section-title, .benefit, .feature, .sidebar-card, .benefit-card, .action-card').forEach(function(el) {
+    document.querySelectorAll('.section-title, .benefit, .feature, .sidebar-card, .benefit-card, .action-card, .feature-card, .step, .audience-card, .faq__item, .stat').forEach(function(el) {
         el.classList.add('fade-in-up');
         observer.observe(el);
     });
+}
+
+// Chat demo typing animation
+function initChatDemo() {
+    var typingIndicator = document.getElementById('typingIndicator');
+    var responseText = document.getElementById('responseText');
+
+    // If elements are not present, skip silently
+    if (!typingIndicator || !responseText) {
+        console.warn('Chat demo elements not found, skipping');
+        return;
+    }
+
+    // Ensure response text is hidden initially
+    responseText.style.opacity = '0';
+    responseText.style.display = 'none';
+
+    // After 2 seconds, hide typing indicator and show response
+    setTimeout(function() {
+        // Fade out typing indicator
+        typingIndicator.style.transition = 'opacity 0.3s ease';
+        typingIndicator.style.opacity = '0';
+
+        setTimeout(function() {
+            typingIndicator.style.display = 'none';
+
+            // Show response text with fade-in
+            responseText.style.display = 'block';
+            // Force reflow so the transition triggers
+            responseText.offsetHeight;
+            responseText.style.transition = 'opacity 0.5s ease';
+            responseText.style.opacity = '1';
+        }, 300);
+    }, 2000);
 }
 
 // Success/Error message display

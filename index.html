@@ -24,9 +24,10 @@
                 <span class="nav__logo">Gmar<span class="nav__logo-accent">Up</span></span>
             </a>
             <div class="nav__links" id="navLinks">
-                <a href="#about" class="nav__link">על הפרויקט</a>
+                <a href="#features" class="nav__link">התכונות</a>
+                <a href="#how-it-works" class="nav__link">איך זה עובד</a>
                 <a href="#memorial" class="nav__link">לעילוי נשמת</a>
-                <a href="#register" class="nav__link nav__link--cta">השאירו פרטים</a>
+                <a href="#register" class="nav__link nav__link--cta">הצטרפו לבטא</a>
             </div>
             <button class="nav__toggle" id="navToggle" aria-label="תפריט" aria-expanded="false">
                 <span></span><span></span><span></span>
@@ -45,98 +46,151 @@
                     <span class="hero__title-accent">ברמה אחרת.</span>
                 </h1>
                 <p class="hero__subtitle">
-                    חברותא דיגיטלית חכמה שמבינה את שפת התלמוד, מזהה דפוסים, ומעניקה הסברים מותאמים לרמה שלכם, הכל בעזרת בינה מלאכותית.
+                    חברותא דיגיטלית מבוססת בינה מלאכותית שמבינה את שפת התלמוד. שאלו שאלה על כל סוגיה בש״ס וקבלו תשובה מדויקת ומבוססת מקורות, מותאמת בדיוק לרמת הלימוד שלכם.
                 </p>
                 <div class="hero__actions">
                     <button class="btn btn--primary btn--lg" onclick="scrollToRegistration()">
-                        אשמח לשמוע עוד
+                        הצטרפו לבטא בחינם
                     </button>
-                    <a href="https://wa.me/972502277660?text=היי,%20אשמח%20לשמוע%20פרטים%20בנוגע%20לבטא%20של%20גמראפ" target="_blank" rel="noopener" class="hero__wa-link">
+                    <button class="btn btn--outline btn--lg" onclick="scrollToSection('how-it-works')">
+                        איך זה עובד?
+                    </button>
+                    <a href="https://wa.me/972539646189?text=היי,%20אשמח%20לשמוע%20פרטים%20בנוגע%20לבטא%20של%20גמראפ" target="_blank" rel="noopener" class="hero__wa-link">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                         דברו איתנו בוואטסאפ
                     </a>
                 </div>
             </div>
             <div class="hero__visual">
-                <div class="hero__card">
-                    <div class="hero__card-line"></div>
-                    <div class="hero__card-text">שאל שאלה על הסוגיה...</div>
-                    <div class="hero__card-response">
-                        <div class="hero__card-dot"></div>
-                        <span>GmarUp מנתח את הסוגיה ומציג תשובה מותאמת</span>
+                <!-- Chat Demo integrated into hero visual -->
+                <div class="chat-demo" id="chatDemo">
+                    <div class="chat-demo__header">
+                        <div class="chat-demo__header-dot"></div>
+                        <span>GmarUp AI</span>
+                    </div>
+                    <div class="chat-demo__messages">
+                        <div class="chat-demo__message chat-demo__message--user">
+                            מה ההבדל בין אביי לרבא בסוגיית המפקיד?
+                        </div>
+                        <div class="chat-demo__message chat-demo__message--ai" id="aiResponse">
+                            <div class="chat-demo__typing" id="typingIndicator">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <div class="chat-demo__response-text" id="responseText" style="display:none;">
+                                לפי הגמרא בבבא מציעא דף לו, אביי סובר ש... ואילו רבא חולק וסובר ש...<br>
+                                רש״י מפרש שהמחלוקת נעוצה ב...<br>
+                                <span class="chat-demo__sources">📖 מקורות: רש״י ד״ה המפקיד, תוספות ד״ה אביי</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About -->
-    <section class="about" id="about">
+    <!-- Features -->
+    <section class="features" id="features">
         <div class="container">
-            <div class="about__grid">
-                <div class="about__text">
-                    <span class="section-label">מה זה GmarUp</span>
-                    <h2 class="section-title">הדרך החדשה<br>ללמוד גמרא</h2>
-                    <p class="about__desc">
-                        כלי חדשני שמשלב בינה מלאכותית מתקדמת עם עולם לימוד הגמרא.
-                        המערכת מבינה את שפת התלמוד, מזהה דפוסים ומעניקה הסברים מותאמים לרמה שלכם.
-                    </p>
+            <div class="features__header">
+                <span class="section-label">מה יש ב GmarUp</span>
+                <h2 class="section-title">הכל במקום אחד: כלים שבאמת עוזרים ללמוד</h2>
+                <p class="features__subtitle">לא סתם עוד אפליקציה. מערכת שלמה שמבינה איך אתם לומדים ומתאימה את עצמה אליכם.</p>
+            </div>
+            <div class="features__grid">
+                <!-- Card 1 -->
+                <div class="feature-card">
+                    <div class="feature-card__icon">🤖</div>
+                    <h3 class="feature-card__title">חברותא AI חכמה</h3>
+                    <p class="feature-card__desc">שאלו כל שאלה על הסוגיה וקבלו תשובה מדויקת עם מקורות. כמו חברותא שתמיד זמין. מבין ארמית, מכיר את כל הש״ס, ומסביר ברמה שלכם.</p>
                 </div>
-                <div class="about__features">
-                    <div class="feature">
-                        <div class="feature__icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="feature__title">תשובות מדויקות</h3>
-                            <p class="feature__desc">שאלו שאלה על כל סוגיה בש״ס וקבלו תשובות מבוססות מקורות</p>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature__icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="feature__title">כל הש״ס ומפרשים</h3>
-                            <p class="feature__desc">חיבור לכל המפרשים, ראשונים ואחרונים, במקום אחד</p>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature__icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M20 12a8 8 0 1 0-8 8"/></svg>
-                        </div>
-                        <div>
-                            <h3 class="feature__title">מותאם לרמה שלכם</h3>
-                            <p class="feature__desc">ההסברים מותאמים באופן דינמי, ממתחילים ועד בקיאים</p>
-                        </div>
-                    </div>
+                <!-- Card 2 -->
+                <div class="feature-card">
+                    <div class="feature-card__icon">📚</div>
+                    <h3 class="feature-card__title">כל המפרשים במקום אחד</h3>
+                    <p class="feature-card__desc">רש״י, תוספות, ריטב״א, רא״ש, בן יהוידע ועוד. כל הפרשנים מוצגים לצד הגמרא בממשק נוח ונגיש.</p>
                 </div>
+                <!-- Card 3 -->
+                <div class="feature-card">
+                    <div class="feature-card__icon">🎯</div>
+                    <h3 class="feature-card__title">מבחנים יומיים חכמים</h3>
+                    <p class="feature-card__desc">מערכת מבחנים בסגנון דואולינגו בשלוש רמות: מתחיל, לומד ובקיא. תרגום מארמית לעברית ולהפך, שאלות מושגיות, ומעקב סטריק יומי.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="feature-card">
+                    <div class="feature-card__icon">📊</div>
+                    <h3 class="feature-card__title">מעקב התקדמות מלא</h3>
+                    <p class="feature-card__desc">גרפים אישיים, הישגים, תגים, סטריקים ודוחות שבועיים. תראו בדיוק כמה התקדמתם ומה עוד נשאר.</p>
+                </div>
+                <!-- Card 5 -->
+                <div class="feature-card">
+                    <div class="feature-card__icon">🔊</div>
+                    <h3 class="feature-card__title">הקראה קולית</h3>
+                    <p class="feature-card__desc">הסברים מוקראים בקול. מושלם ללימוד תוך כדי נסיעה או כשהעיניים עייפות.</p>
+                </div>
+                <!-- Card 6 -->
+                <div class="feature-card">
+                    <div class="feature-card__icon">📱</div>
+                    <h3 class="feature-card__title">נגיש מכל מקום</h3>
+                    <p class="feature-card__desc">עובד מהנייד, טאבלט ומחשב. מאושר לשימוש עם סינון אינטרנט. זמין 24/7.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="how-it-works__header">
+                <span class="section-label">פשוט להתחיל</span>
+                <h2 class="section-title">מתחילים ללמוד בשלושה שלבים</h2>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step__number">1</div>
+                    <h3 class="step__title">נרשמים בחינם</h3>
+                    <p class="step__desc">יוצרים חשבון תוך 30 שניות עם אימייל, או נכנסים ישר עם חשבון גוגל.</p>
+                </div>
+                <div class="step">
+                    <div class="step__number">2</div>
+                    <h3 class="step__title">בוחרים מסכת</h3>
+                    <p class="step__desc">בוחרים את המסכת שרוצים ללמוד או מתחילים עם הדף היומי.</p>
+                </div>
+                <div class="step">
+                    <div class="step__number">3</div>
+                    <h3 class="step__title">לומדים עם AI</h3>
+                    <p class="step__desc">שואלים שאלות, מקבלים הסברים מותאמים, עושים מבחנים ועוקבים אחרי ההתקדמות.</p>
+                </div>
+            </div>
+            <div class="how-it-works__cta">
+                <button class="btn btn--primary btn--lg" onclick="scrollToRegistration()">
+                    רוצה לנסות? הצטרף לבטא בחינם
+                </button>
             </div>
         </div>
     </section>
 
     <!-- Benefits -->
-    <section class="benefits">
+    <section class="benefits" id="benefits">
         <div class="container">
             <div class="benefits__header">
                 <span class="section-label">גרסת בטא</span>
-                <h2 class="section-title">למה להשאיר פרטים עכשיו?</h2>
+                <h2 class="section-title">למה כדאי להירשם עכשיו?</h2>
             </div>
             <div class="benefits__grid">
                 <div class="benefit">
                     <div class="benefit__number">01</div>
                     <h3 class="benefit__title">גישה חינמית מלאה</h3>
-                    <p class="benefit__desc">כל משתתפי הבטא יקבלו גישה חינמית לכל התכונות ללא הגבלה</p>
+                    <p class="benefit__desc">כל הנרשמים לבטא מקבלים גישה מלאה לכל התכונות: חברותא AI, מבחנים, מפרשים ומעקב התקדמות. בלי תשלום.</p>
                 </div>
                 <div class="benefit benefit--featured">
                     <div class="benefit__number">02</div>
-                    <h3 class="benefit__title">הראשונים להשתמש</h3>
-                    <p class="benefit__desc">תהיו הראשונים לחוות את הטכנולוגיה וליהנות מגישה מוקדמת</p>
+                    <h3 class="benefit__title">מקומות מוגבלים</h3>
+                    <p class="benefit__desc">גרסת הבטא פתוחה למספר מצומצם של משתמשים. מי שנרשם עכשיו מבטיח את מקומו.</p>
                 </div>
                 <div class="benefit">
                     <div class="benefit__number">03</div>
-                    <h3 class="benefit__title">השפעה על המוצר</h3>
-                    <p class="benefit__desc">המשוב שלכם יעצב ישירות את הגרסה הסופית של המוצר</p>
+                    <h3 class="benefit__title">תשפיעו על המוצר</h3>
+                    <p class="benefit__desc">המשוב שלכם ישפיע ישירות על הפיצ׳רים והחוויה בגרסה הסופית. תהיו שותפים ביצירת הכלי.</p>
                 </div>
             </div>
         </div>
@@ -172,8 +226,8 @@
                 <!-- Form -->
                 <div class="register__form-wrap">
                     <div class="register__form-header">
-                        <h2 class="register__form-title">השאירו פרטים</h2>
-                        <p class="register__form-subtitle">נעדכן אתכם ברגע שגרסת הבטא תהיה זמינה</p>
+                        <h2 class="register__form-title">הצטרפו לבטא: השאירו פרטים ונחזור אליכם</h2>
+                        <p class="register__form-subtitle">ההרשמה לוקחת 20 שניות. בלי התחייבות, בלי תשלום.</p>
                     </div>
 
                     <form id="registrationForm" class="form">
@@ -198,7 +252,7 @@
 
                         <div class="form-group">
                             <label for="phone" class="form-label">טלפון</label>
-                            <input type="tel" id="phone" name="phone" required class="form-input" autocomplete="tel" placeholder="050-1234567">
+                            <input type="tel" id="phone" name="phone" required class="form-input" autocomplete="tel" placeholder="0501234567">
                             <div id="phone-error" class="field-error" role="alert" aria-live="polite"></div>
                         </div>
 
@@ -206,9 +260,10 @@
                             <label for="studyLevel" class="form-label">רמת לימוד <span class="form-optional">(לא חובה)</span></label>
                             <select id="studyLevel" name="studyLevel" class="form-input form-select">
                                 <option value="">בחרו רמה</option>
-                                <option value="beginner">מתחיל, רק התחלתי ללמוד גמרא</option>
-                                <option value="intermediate">בינוני, יש לי ידע בסיסי</option>
-                                <option value="advanced">מתקדם, לומד גמרא ברמה גבוהה</option>
+                                <option value="beginner">מתחיל</option>
+                                <option value="learner">לומד</option>
+                                <option value="proficient">בקיא</option>
+                                <option value="teacher">מלמד</option>
                             </select>
                             <div id="studyLevel-error" class="field-error" role="alert" aria-live="polite"></div>
                         </div>
@@ -225,9 +280,11 @@
                         </div>
 
                         <button type="submit" class="btn btn--primary btn--submit">
-                            <span class="btn-text">השאירו פרטים</span>
+                            <span class="btn-text">שריינו לי מקום בבטא!</span>
                             <span class="btn-loader"></span>
                         </button>
+
+                        <p class="form__security-note">🔒 הפרטים שלכם מאובטחים ולא יועברו לצד שלישי</p>
 
                         <div class="form__trust">
                             <div class="form__trust-item">
@@ -258,7 +315,7 @@
                         </div>
                         <h3 class="sidebar-card__title">שאלות? דברו איתנו</h3>
                         <p class="sidebar-card__desc">מוזמנים לשלוח הודעה ישירה ונחזור אליכם</p>
-                        <a href="https://wa.me/972502277660?text=היי,%20אשמח%20לשמוע%20פרטים%20בנוגע%20לבטא%20של%20גמראפ" target="_blank" rel="noopener" class="btn btn--wa">
+                        <a href="https://wa.me/972539646189?text=היי,%20אשמח%20לשמוע%20פרטים%20בנוגע%20לבטא%20של%20גמראפ" target="_blank" rel="noopener" class="btn btn--wa">
                             שלחו הודעה בוואטסאפ
                         </a>
                     </div>
@@ -278,6 +335,104 @@
         </div>
     </section>
 
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="faq__header">
+                <span class="section-label">שאלות נפוצות</span>
+                <h2 class="section-title">שאלות נפוצות</h2>
+            </div>
+            <div class="faq__list">
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        <span>האם GmarUp מחליף את הלימוד המסורתי?</span>
+                        <svg class="faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p>לא. GmarUp הוא כלי עזר שמשלים את הלימוד. הוא עוזר להבין, מתרגם, ומנגיש, אבל לא מחליף חברותא אמיתית או רב.</p>
+                    </div>
+                </div>
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        <span>על אילו מסכתות אפשר ללמוד?</span>
+                        <svg class="faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p>כרגע המערכת תומכת במסכתות מרכזיות מהש״ס. אנחנו מוסיפים מסכתות כל הזמן ובגרסת הבטא נשמח לשמוע מה חשוב לכם.</p>
+                    </div>
+                </div>
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        <span>האם זה בחינם?</span>
+                        <svg class="faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p>גרסת הבטא חינמית לחלוטין כולל כל הפיצ׳רים. בעתיד יהיה מודל תשלום, אבל משתתפי הבטא ייהנו מהטבות מיוחדות.</p>
+                    </div>
+                </div>
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        <span>האם אפשר להשתמש עם סינון אינטרנט?</span>
+                        <svg class="faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p>כן. GmarUp מאושר לשימוש עם סינון ועובד מכל מכשיר: מחשב, טאבלט וסמארטפון.</p>
+                    </div>
+                </div>
+                <div class="faq__item">
+                    <button class="faq__question" onclick="toggleFaq(this)">
+                        <span>מי עומד מאחורי GmarUp?</span>
+                        <svg class="faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p>GmarUp פותח לזכרו של רס״ל אור מנצור ז״ל, לוחם מיחידת הקומנדו אגוז שנפל בגבורה במלחמת חרבות ברזל. המטרה שלנו היא להפיץ תורה ואור לזכותו.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact__inner">
+                <h2 class="section-title">שאלות? אנחנו כאן</h2>
+                <div class="contact__buttons">
+                    <a href="https://wa.me/972539646189" target="_blank" rel="noopener" class="btn btn--wa btn--lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        דברו איתנו בוואטסאפ
+                    </a>
+                    <a href="https://chat.whatsapp.com/LNmVCXvv35S9SsbWTol2qW" target="_blank" rel="noopener" class="btn btn--outline btn--lg">
+                        הצטרפו לקבוצת העדכונים
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="final-cta">
+        <div class="container">
+            <div class="final-cta__inner">
+                <h2 class="section-title">מוכנים להתחיל?</h2>
+                <p class="final-cta__subtitle">הצטרפו ללומדים שכבר מנסים את GmarUp</p>
+                <button class="btn btn--primary btn--lg" onclick="scrollToRegistration()">
+                    הצטרפו לבטא בחינם
+                </button>
+                <div class="final-cta__stats">
+                    <div class="stat">
+                        <span class="stat__number">50+</span>
+                        <span class="stat__label">לומדים פעילים</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat__number">84+</span>
+                        <span class="stat__label">עמודים נלמדו</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -287,7 +442,7 @@
                     <p class="footer__tagline">בפיתוח | גרסת בטא בקרוב</p>
                 </div>
                 <div class="footer__links">
-                    <a href="https://wa.me/972502277660?text=היי,%20אשמח%20לשמוע%20פרטים%20בנוגע%20לבטא%20של%20גמראפ" target="_blank" rel="noopener">צור קשר</a>
+                    <a href="https://wa.me/972539646189?text=היי,%20אשמח%20לשמוע%20פרטים%20בנוגע%20לבטא%20של%20גמראפ" target="_blank" rel="noopener">צור קשר</a>
                     <a href="#memorial">לעילוי נשמת אור</a>
                 </div>
             </div>
@@ -325,7 +480,7 @@
     <div class="sticky-cta" id="stickyCta">
         <div class="sticky-cta__inner">
             <span class="sticky-cta__text">מעוניינים לשמוע עוד על GmarUp?</span>
-            <button class="btn btn--primary btn--sm" onclick="scrollToRegistration()">השאירו פרטים</button>
+            <button class="btn btn--primary btn--sm" onclick="scrollToRegistration()">הצטרפו לבטא</button>
             <button class="sticky-cta__close" onclick="document.getElementById('stickyCta').classList.remove('show')" aria-label="סגור">&times;</button>
         </div>
     </div>
@@ -359,6 +514,27 @@
                 nav.classList.remove('nav--scrolled');
             }
         });
+
+        // Scroll to any section by ID
+        function scrollToSection(sectionId) {
+            var el = document.getElementById(sectionId);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // FAQ toggle
+        function toggleFaq(button) {
+            var item = button.parentElement;
+            var isOpen = item.classList.contains('faq__item--open');
+            // Close all FAQ items
+            var allItems = document.querySelectorAll('.faq__item');
+            allItems.forEach(function(el) {
+                el.classList.remove('faq__item--open');
+            });
+            // Open clicked item if it was closed
+            if (!isOpen) {
+                item.classList.add('faq__item--open');
+            }
+        }
     </script>
 
     <script src="js/dynamic-settings.js"></script>
