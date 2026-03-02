@@ -91,13 +91,8 @@ function initRegistrationForm() {
                 // Track successful registration
                 trackEvent('Form', 'registration_success', formData.email);
                 
-                // Show success and redirect
-                showSuccessMessage();
-                
-                // Redirect to thank you page after 2 seconds
-                setTimeout(() => {
-                    window.location.href = 'thank-you.html?email=' + encodeURIComponent(formData.email);
-                }, 2000);
+                // Redirect to thank you page
+                window.location.href = 'thank-you.html?email=' + encodeURIComponent(formData.email);
                 
             } else {
                 throw new Error(response.error || 'שגיאה בהרשמה');
@@ -321,41 +316,6 @@ function showFormError(message) {
     }, 5000);
 }
 
-function showSuccessMessage() {
-    // Create success message
-    const successDiv = document.createElement('div');
-    successDiv.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: #C6F6D5;
-        color: #22543D;
-        padding: 2rem;
-        border-radius: 12px;
-        text-align: center;
-        z-index: 10000;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        border: 2px solid #9AE6B4;
-        max-width: 90%;
-        animation: scale-in 0.5s ease;
-    `;
-    
-    successDiv.innerHTML = `
-        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
-        <h3 style="margin-bottom: 1rem; color: #22543D;">ברוך הבא למשפחת גמראפ!</h3>
-        <p style="margin: 0; color: #2F855A;">קיבלנו את ההרשמה שלך.<br>בעוד רגע תועבר לדף המשך...</p>
-    `;
-    
-    document.body.appendChild(successDiv);
-    
-    // Remove after redirect
-    setTimeout(() => {
-        if (successDiv.parentNode) {
-            successDiv.remove();
-        }
-    }, 3000);
-}
 
 // Auto-fill detection and handling
 function detectAutoFill() {
