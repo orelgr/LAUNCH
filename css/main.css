@@ -1071,6 +1071,42 @@ a:hover { color: var(--gold-dark); }
     color: var(--ink-muted);
 }
 
+.custom-donate-row {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.custom-donate-input {
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: .9rem;
+    padding: .65rem .8rem;
+    border: 1.5px solid var(--cream-dark);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    color: var(--ink);
+    text-align: center;
+    direction: rtl;
+}
+
+.custom-donate-input:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.donate-btn--go {
+    white-space: nowrap;
+    background: var(--gold);
+    color: var(--white);
+    border-color: var(--gold);
+}
+
+.donate-btn--go:hover {
+    background: var(--gold-dark);
+    border-color: var(--gold-dark);
+}
+
 /* ============================================================
    FOOTER
    ============================================================ */

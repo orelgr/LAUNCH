@@ -40,7 +40,7 @@
         <div class="hero__bg-pattern"></div>
         <div class="hero__inner">
             <div class="hero__content">
-                <div class="hero__eyebrow">גרסת בטא בקרוב</div>
+                <div class="hero__eyebrow">גרסת הבטא יצאה לדרך</div>
                 <h1 class="hero__title">
                     לימוד גמרא.<br>
                     <span class="hero__title-accent">ברמה אחרת.</span>
@@ -338,8 +338,13 @@
                         <div class="donate-amounts">
                             <button class="donate-btn" onclick="donate(50)">&#8362;50</button>
                             <button class="donate-btn" onclick="donate(100)">&#8362;100</button>
-                            <button class="donate-btn" onclick="donate(200)">&#8362;200</button>
-                            <button class="donate-btn donate-btn--custom" onclick="showDonationModal()">סכום אחר</button>
+                            <button class="donate-btn" onclick="donate(180)">&#8362;180</button>
+                            <button class="donate-btn" onclick="donate(365)">&#8362;365</button>
+                            <button class="donate-btn donate-btn--custom" id="custom-donate-toggle" onclick="toggleCustomDonate()">סכום אחר</button>
+                            <div class="custom-donate-row" id="custom-donate-row" style="display:none;">
+                                <input type="number" id="custom-donate-input" class="custom-donate-input" placeholder="הכניסו סכום..." min="1" max="10000">
+                                <button class="donate-btn donate-btn--go" onclick="donateCustomAmount()">תרמו</button>
+                            </div>
                         </div>
                     </div>
                 </div>

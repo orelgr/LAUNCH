@@ -358,6 +358,30 @@ function donateCustom() {
     showDonationModal();
 }
 
+function toggleCustomDonate() {
+    const row = document.getElementById('custom-donate-row');
+    const btn = document.getElementById('custom-donate-toggle');
+    if (row.style.display === 'none') {
+        row.style.display = 'flex';
+        btn.style.display = 'none';
+        document.getElementById('custom-donate-input').focus();
+    } else {
+        row.style.display = 'none';
+        btn.style.display = '';
+    }
+}
+
+function donateCustomAmount() {
+    const input = document.getElementById('custom-donate-input');
+    const amount = parseInt(input.value);
+    if (!amount || amount < 1) {
+        input.classList.add('shake');
+        setTimeout(() => input.classList.remove('shake'), 500);
+        return;
+    }
+    donate(amount);
+}
+
 // Enhanced Donation Modal for Main Page
 let selectedDonationAmount = 180;
 let modalInitialized = false;
